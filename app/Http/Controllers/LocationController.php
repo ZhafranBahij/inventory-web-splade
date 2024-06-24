@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 
 class LocationController extends Controller
@@ -14,17 +15,23 @@ class LocationController extends Controller
      */
     public function index()
     {
+
+        $location = Location::query()
+                        ->latest()
+                        ->get();
+
         $locations = SpladeTable::for(Location::class)
-                        ->column('id', sortable: true)
-                        ->column('name', sortable: true)
+                        ->column('action')
+                        ->column('id', sortable: true) // Sortable can sort the data likes datatable
+                        ->column('name', sortable: true, searchable: true) // Searchable can searh the data
                         ->column('created_at', sortable: true)
                         ->column('updated_at', sortable: true)
                         ->paginate(15);
 
-
         return view('location.index', [
             'locations' => $locations,
         ]);
+
     }
 
     /**
@@ -32,7 +39,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        //
+        return view('location.create');
     }
 
     /**
@@ -40,7 +47,14 @@ class LocationController extends Controller
      */
     public function store(StoreLocationRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        Location::create($validated);
+
+        Toast::title('Data has been created!')
+            ->autoDismiss(5);
+
+        return to_route('location.index');
     }
 
     /**
@@ -48,7 +62,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        //
+
     }
 
     /**
@@ -56,7 +70,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('location.edit', [
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -64,7 +80,13 @@ class LocationController extends Controller
      */
     public function update(UpdateLocationRequest $request, Location $location)
     {
-        //
+        $validated = $request->validated();
+
+        $location->update($validated);
+
+        Toast::title('Data has been updated!');
+
+        return to_route('location.index');
     }
 
     /**
@@ -72,6 +94,10 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+
+        Toast::title('Data has been deleted!');
+
+        return to_route('location.index');
     }
 }

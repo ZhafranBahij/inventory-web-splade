@@ -9,7 +9,22 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <x-splade-table :for="$locations" />
+                    <x-splade-flash>
+                        <p v-if="flash.has('message')" v-text="flash.message" />
+                    </x-splade-flash>
+                    <Link href="{{ route('location.create') }}" class="bg-blue-300 text-black px-4 py-2 rounded-lg">
+                        Create
+                    </Link>
+                    <x-splade-table :for="$locations" >
+                        @cell('action', $location)
+                            <Link href="{{ route('location.edit', $location->id) }}" class="bg-yellow-300 text-black px-4 py-2 rounded-lg mr-2">
+                                Edit
+                            </Link>
+                            <x-splade-form confirm="Are you sure you want to delete" :action="route('location.destroy', $location->id)" :method="'DELETE'">
+                                <x-splade-submit  class="bg-red-300 text-black px-4 py-2 rounded-lg" label="Delete"/>
+                            </x-splade-form>
+                        @endcell
+                    </x-splade-table>
                 </div>
             </div>
         </div>
