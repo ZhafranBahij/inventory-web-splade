@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Tables\UserTable;
 use ProtoneMedia\Splade\Facades\Toast;
 use ProtoneMedia\Splade\SpladeTable;
 
@@ -15,11 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = SpladeTable::for(User::class)
-                        ->column('action')
-                        ->column('name', sortable: true, searchable: true)
-                        ->column('email', sortable: true, searchable: true)
-                        ->paginate(15);
+        $users = UserTable::class;
 
         return view('user.index', [
             'users' => $users,

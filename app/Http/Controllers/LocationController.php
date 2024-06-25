@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Location;
 use App\Http\Requests\StoreLocationRequest;
 use App\Http\Requests\UpdateLocationRequest;
+use App\Tables\LocationTable;
 use ProtoneMedia\Splade\Facades\Toast;
+use ProtoneMedia\Splade\SpladeQueryBuilder;
 use ProtoneMedia\Splade\SpladeTable;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class LocationController extends Controller
 {
@@ -15,18 +18,7 @@ class LocationController extends Controller
      */
     public function index()
     {
-
-        $location = Location::query()
-                        ->latest()
-                        ->get();
-
-        $locations = SpladeTable::for(Location::class)
-                        ->column('action')
-                        ->column('id', sortable: true) // Sortable can sort the data likes datatable
-                        ->column('name', sortable: true, searchable: true) // Searchable can searh the data
-                        ->column('created_at', sortable: true)
-                        ->column('updated_at', sortable: true)
-                        ->paginate(15);
+        $locations = LocationTable::class;
 
         return view('location.index', [
             'locations' => $locations,
