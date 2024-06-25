@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,7 @@ Route::middleware('splade')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::resource('/location', LocationController::class)->names('location');
+        Route::resource('/user', UserController::class)->names('user');
     });
 
     require __DIR__.'/auth.php';
