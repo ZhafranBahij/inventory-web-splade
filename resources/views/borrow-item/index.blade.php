@@ -1,0 +1,38 @@
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight capitalize">
+            {{ __('Borrow Item') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <x-splade-flash>
+                        <p v-if="flash.has('message')" v-text="flash.message" />
+                    </x-splade-flash>
+                    <Link href="{{ route('borrow-item.create') }}" class="bg-blue-300 text-black px-4 py-2 rounded-lg">
+                        Create
+                    </Link>
+                    <x-splade-table :for="$datas" >
+                        @cell('item', $data)
+                            {{ $data->item->name ?? '-' }}
+                        @endcell
+                        @cell('borrow_by', $data)
+                            {{ $data->user_borrow->name ?? '-' }}
+                        @endcell
+                        @cell('action', $data)
+                            <Link href="{{ route('borrow-item.edit', $data->id) }}" class="bg-yellow-300 text-black px-4 py-2 rounded-lg mr-2">
+                                Edit
+                            </Link>
+                            <x-splade-form confirm="Are you sure you want to delete" :action="route('borrow-item.destroy', $data->id)" :method="'DELETE'">
+                                <x-splade-submit  class="bg-red-300 text-black px-4 py-2 rounded-lg" label="Delete"/>
+                            </x-splade-form>
+                        @endcell
+                    </x-splade-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>

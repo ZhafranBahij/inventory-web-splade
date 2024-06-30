@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BorrowItemController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,7 @@ Route::middleware('splade')->group(function () {
         Route::resource('/location', LocationController::class)->names('location');
         Route::resource('/user', UserController::class)->names('user');
         Route::resource('/item', ItemController::class)->names('item');
+        Route::resource('/borrow-item', BorrowItemController::class)->names('borrow-item');
     });
 
     require __DIR__.'/auth.php';

@@ -25,6 +25,9 @@
                         <x-nav-link :href="route('item.index')" :active="request()->routeIs('item.*')">
                             {{ __('Item') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('borrow-item.index')" :active="request()->routeIs('borrow-item.*')">
+                            {{ __('Borrow Item') }}
+                        </x-nav-link>
                     </div>
                 </div>
 

@@ -2,12 +2,12 @@
 
 namespace App\Tables;
 
-use App\Models\Item;
+use App\Models\BorrowItem;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\SpladeTable;
 
-class ItemTable extends AbstractTable
+class BorrowItemTable extends AbstractTable
 {
     /**
      * Create a new instance.
@@ -36,10 +36,10 @@ class ItemTable extends AbstractTable
      */
     public function for()
     {
-        return Item::query()
-                ->with(['user', 'location'])
-                ->latest()
-                ->paginate(10);
+        return BorrowItem::query()
+        ->with(['user_borrow', 'item'])
+        ->latest()
+        ->paginate(10);
     }
 
     /**
@@ -51,12 +51,12 @@ class ItemTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->column('id', sortable: true)
             ->column('action')
-            ->column('location', sortable: true)
-            ->column('user', sortable: true)
-            ->column('name', sortable: true, searchable: true)
-            ->column('place', sortable: true, searchable: true);
+            ->column('id', sortable: true)
+            ->column('item', sortable: true, searchable: true)
+            ->column('borrow_by', sortable: true, searchable: true)
+            ->column('start_date', sortable: true, searchable: true)
+            ->column('end_date', sortable: true, searchable: true);
 
             // ->searchInput()
             // ->selectFilter()
