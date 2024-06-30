@@ -22,6 +22,9 @@
                         @cell('user', $item)
                             {{ $item->user->name ?? '-' }}
                         @endcell
+                        @cell('image', $item)
+                            <img src=" {{ asset('storage/'.'item/'.$item->image) }}" alt="" style="height: 50px">
+                        @endcell
                         @cell('action', $item)
                             <Link href="{{ route('item.edit', $item->id) }}" class="bg-yellow-300 text-black px-4 py-2 rounded-lg mr-2">
                                 Edit

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Location::class);
             $table->foreignIdFor(User::class);
             $table->string('name')->nullable();
+            $table->string('image')->nullable();
             $table->integer('quantity')->nullable();
             $table->timestamps();
         });

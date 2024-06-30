@@ -53,10 +53,10 @@ class ItemTable extends AbstractTable
         $table
             ->column('id', sortable: true)
             ->column('action')
+            ->column('image')
             ->column('location', sortable: true)
             ->column('user', sortable: true)
-            ->column('name', sortable: true, searchable: true)
-            ->column('place', sortable: true, searchable: true);
+            ->column('name', sortable: true, searchable: true);
 
             // ->searchInput()
             // ->selectFilter()

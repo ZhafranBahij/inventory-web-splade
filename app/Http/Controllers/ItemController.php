@@ -44,6 +44,8 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $validated = $request->validated();
+        $validated['image'] = time().'_'.$request->image->getClientOriginalName();
+        $request->image->storeAs('public/item/'.$validated['image']);
 
         Item::create($validated);
 

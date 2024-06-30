@@ -26,6 +26,7 @@ class StoreItemRequest extends FormRequest
             'location_id' => 'required',
             'name' => 'required|max:100',
             'quantity' => 'required|numeric',
+            'image' => 'required|image',
         ];
     }
 }

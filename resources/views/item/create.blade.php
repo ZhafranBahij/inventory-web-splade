@@ -24,6 +24,7 @@
                         </x-splade-select>
                         <x-splade-input name="name" label="Name" />
                         <x-splade-input name="quantity" label="Quantity" />
+                        <x-splade-file name="image" filepond label="Image" preview />
                         <x-splade-submit />
                     </x-splade-form>
                 </div>

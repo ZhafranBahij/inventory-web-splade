@@ -11,6 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-splade-form :action="route('location.store')" class="space-y-4">
                         <x-splade-input name="name" label="Name" />
+                        <button></button>
                         <x-splade-submit />
                     </x-splade-form>
                 </div>
