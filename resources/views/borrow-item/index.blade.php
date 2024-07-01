@@ -13,15 +13,17 @@
                         <p v-if="flash.has('message')" v-text="flash.message" />
                     </x-splade-flash>
                     <Link href="{{ route('borrow-item.create') }}" class="bg-blue-300 text-black px-4 py-2 rounded-lg">
-                        Create
+                        <i class='bx bx-plus'></i>
                     </Link>
                     <x-splade-table :for="$datas" >
                         @cell('action', $data)
                             <Link href="{{ route('borrow-item.edit', $data->id) }}" class="bg-yellow-300 text-black px-4 py-2 rounded-lg mr-2">
-                                Edit
+                                <i class='bx bxs-edit-alt'></i>
                             </Link>
                             <x-splade-form confirm="Are you sure you want to delete" :action="route('borrow-item.destroy', $data->id)" :method="'DELETE'">
-                                <x-splade-submit  class="bg-red-300 text-black px-4 py-2 rounded-lg" label="Delete"/>
+                                <x-splade-submit  class="bg-red-300 text-black px-4 py-2 rounded-lg" label="Delete">
+                                    <i class='bx bxs-trash' ></i>
+                                </x-splade-submit>
                             </x-splade-form>
                         @endcell
                     </x-splade-table>
