@@ -16,12 +16,6 @@
                         Create
                     </Link>
                     <x-splade-table :for="$datas" >
-                        @cell('item', $data)
-                            {{ $data->item->name ?? '-' }}
-                        @endcell
-                        @cell('borrow_by', $data)
-                            {{ $data->user_borrow->name ?? '-' }}
-                        @endcell
                         @cell('action', $data)
                             <Link href="{{ route('borrow-item.edit', $data->id) }}" class="bg-yellow-300 text-black px-4 py-2 rounded-lg mr-2">
                                 Edit

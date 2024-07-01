@@ -38,8 +38,7 @@ class ItemTable extends AbstractTable
     {
         return Item::query()
                 ->with(['user', 'location'])
-                ->latest()
-                ->paginate(10);
+                ->latest();
     }
 
     /**
@@ -54,15 +53,17 @@ class ItemTable extends AbstractTable
             ->column('id', sortable: true)
             ->column('action')
             ->column('image')
-            ->column('location', sortable: true)
-            ->column('user', sortable: true)
-            ->column('name', sortable: true, searchable: true);
-
-            // ->searchInput()
-            // ->selectFilter()
-            // ->withGlobalSearch()
-
-            // ->bulkAction()
-            // ->export()
+            ->column(
+                key: 'location.name',
+                label: 'Location',
+                searchable: true,
+            )
+            ->column(
+                key: 'user.name',
+                label: 'User',
+                searchable: true,
+            )
+            ->column('name', sortable: true, searchable: true)
+            ->paginate(10);
     }
 }

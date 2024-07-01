@@ -16,12 +16,6 @@
                         Create
                     </Link>
                     <x-splade-table :for="$items" >
-                        @cell('location', $item)
-                            {{ $item->location->name ?? '-' }}
-                        @endcell
-                        @cell('user', $item)
-                            {{ $item->user->name ?? '-' }}
-                        @endcell
                         @cell('image', $item)
                             <img src=" {{ asset('storage/'.'item/'.$item->image) }}" alt="" style="height: 50px">
                         @endcell

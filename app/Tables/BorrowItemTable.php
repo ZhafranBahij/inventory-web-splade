@@ -38,8 +38,7 @@ class BorrowItemTable extends AbstractTable
     {
         return BorrowItem::query()
         ->with(['user_borrow', 'item'])
-        ->latest()
-        ->paginate(10);
+        ->latest();
     }
 
     /**
@@ -53,16 +52,18 @@ class BorrowItemTable extends AbstractTable
         $table
             ->column('action')
             ->column('id', sortable: true)
-            ->column('item', sortable: true, searchable: true)
-            ->column('borrow_by', sortable: true, searchable: true)
+            ->column(
+                key: 'item.name',
+                label: 'Item',
+                searchable: true,
+            )
+            ->column(
+                key: 'user_borrow.name',
+                label: 'Borrow By',
+                searchable: true,
+            )
             ->column('start_date', sortable: true, searchable: true)
-            ->column('end_date', sortable: true, searchable: true);
-
-            // ->searchInput()
-            // ->selectFilter()
-            // ->withGlobalSearch()
-
-            // ->bulkAction()
-            // ->export()
+            ->column('end_date', sortable: true, searchable: true)
+            ->paginate(10);
     }
 }
