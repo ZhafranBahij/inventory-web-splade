@@ -49,8 +49,8 @@ class LocationTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->column('action')
             ->column('id', sortable: true) // Sortable can sort the data likes datatable
+            ->column('action')
             ->column('name', sortable: true, searchable: true) // Searchable can searh the data
             ->column('created_at', sortable: true)
             ->column('updated_at', sortable: true)

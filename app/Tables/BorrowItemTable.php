@@ -50,8 +50,8 @@ class BorrowItemTable extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
+        ->column('id', sortable: true)
             ->column('action')
-            ->column('id', sortable: true)
             ->column(
                 key: 'item.name',
                 label: 'Item',
