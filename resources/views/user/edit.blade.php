@@ -12,7 +12,12 @@
                     <x-splade-form :default="$user" :action="route('user.update', $user->id)" :method="'PUT'" class="space-y-4">
                         <x-splade-input name="email" type="email" label="Email" />
                         <x-splade-input name="name" label="Name" />
-                        <x-splade-submit />
+                        <div class="flex flex-row">
+                            <x-splade-submit />
+                            <Link class="px-2 py-2" href="{{ route('user.index') }}">
+                                Back
+                            </Link>
+                        </div>
                     </x-splade-form>
                 </div>
             </div>

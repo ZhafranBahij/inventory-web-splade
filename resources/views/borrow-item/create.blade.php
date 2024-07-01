@@ -34,7 +34,12 @@
                         </x-splade-select>
                         <x-splade-input name="start_date" label="Start Date" type="date" />
                         <x-splade-input name="end_date" label="End Date" type="date" />
-                        <x-splade-submit />
+                        <div class="flex flex-row">
+                            <x-splade-submit />
+                            <Link class="px-2 py-2" href="{{ route('borrow-item.index') }}">
+                                Back
+                            </Link>
+                        </div>
                     </x-splade-form>
                 </div>
             </div>

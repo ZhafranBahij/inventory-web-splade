@@ -11,8 +11,12 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <x-splade-form :action="route('location.store')" class="space-y-4">
                         <x-splade-input name="name" label="Name" />
-                        <button></button>
-                        <x-splade-submit />
+                        <div class="flex flex-row">
+                            <x-splade-submit />
+                            <Link class="px-2 py-2" href="{{ route('location.index') }}">
+                                Back
+                            </Link>
+                        </div>
                     </x-splade-form>
                 </div>
             </div>

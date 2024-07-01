@@ -13,7 +13,12 @@
                         <x-splade-input name="email" type="email" label="Email" />
                         <x-splade-input name="password" type="password" label="Password" />
                         <x-splade-input name="name" label="Name" />
-                        <x-splade-submit />
+                        <div class="flex flex-row">
+                            <x-splade-submit />
+                            <Link class="px-2 py-2" href="{{ route('user.index') }}">
+                                Back
+                            </Link>
+                        </div>
                     </x-splade-form>
                 </div>
             </div>

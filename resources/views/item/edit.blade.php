@@ -24,7 +24,12 @@
                         </x-splade-select>
                         <x-splade-input name="name" label="Name" />
                         <x-splade-input name="quantity" label="Quantity" />
-                        <x-splade-submit />
+                        <div class="flex flex-row">
+                            <x-splade-submit />
+                            <Link class="px-2 py-2" href="{{ route('item.index') }}">
+                                Back
+                            </Link>
+                        </div>
                     </x-splade-form>
                 </div>
             </div>
